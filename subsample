@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
-module load gcc/7.3.0
-module load samtools/1.9
+#for example: sbatch -t 1:00:00 projects/def-msteiner/subsampling/script.sh 2
 
-fraction=(122 244 3658 4878 6098 7317 8537)
-depth=(10 20 30 40 50 60 70)
+fraction=(.06097561 .12195122 .18292683 .24390244 .30487805 .36585366 .42682927 .48780488 .54878049 .60975610 .67073171 .73170732 .79268293 .85365854 .91463415)
+depth=(5 10 15 20 25 30 35 40 45 50 55 60 65 70 75)
+
+SEED=$1
+PATH=projects/def-msteiner/subsampling/
+mkdir -p $PATH/scripts
+mkdir -p $PATH/files
 
 for i in ${!depth[*]}
 do
-samtools view -s 1.${fraction[$i]} projects/def-msteiner/readdepth/BAM/HuRef.82x.bam -o projects/def-msteiner/sngo/HuRef.82x.subsampled${depth[$i]}x.bam
-echo "HuRef.82x.subsampled${depth[$i]}x.bam"
+  echo -e '#!/bin/sh' > $PATH/scripts/subsample${depth[$i]}x.sh
+  echo -e "module load gcc/7.3.0" >> $PATH/scripts/subsample${depth[$i]}x.sh
+  echo -e "module load samtools/1.9" >> $PATH/scripts/subsample${depth[$i]}x.sh
+  echo -e "samtools view -s $SEED${fraction[$i]} projects/def-msteiner/readdepth/BAM/HuRef.82x.bam -o $PATH/files/HuRef.82x.subsampled${depth[$i]}x.bam" >> $PATH/scripts/subsample${depth[$i]}x.sh
+  echo -e "echo 'HuRef.82x.subsampled${depth[$i]}x.bam'" >> $PATH/scripts/subsample${depth[$i]}x.sh
+  sbatch -t 48:00:00 $PATH/scripts/subsample${depth[$i]}x.sh
 done
