@@ -6,7 +6,7 @@ fraction=(.06097561 .12195122 .18292683 .24390244 .30487805 .36585366 .42682927 
 depth=(5 10 15 20 25 30 35 40 45 50 55 60 65 70 75)
 
 SEED=$1
-PATH=projects/def-msteiner/subsampling/
+PATH=projects/def-msteiner/subsampling
 mkdir -p $PATH/scripts
 mkdir -p $PATH/files
 
