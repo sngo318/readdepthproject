@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
-#for example: sbatch -t 1:00:00 projects/def-msteiner/subsampling/script.sh 2
+#for example: sbatch -t 1:00:00 scratch/subsets/script.sh 2
 
-fraction=(.06097561 .12195122 .18292683 .24390244 .30487805 .36585366 .42682927 .48780488 .54878049 .60975610 .67073171 .73170732 .79268293 .85365854 .91463415)
-depth=(5 10 15 20 25 30 35 40 45 50 55 60 65 70 75)
+#fraction=(.06097561 .12195122 .18292683 .24390244 .30487805 .36585366 .42682927 .48780488 .54878049 .60975610 .67073171 .73170732 .79268293 .85365854 .91463415)
+#depth=(5 10 15 20 25 30 35 40 45 50 55 60 65 70 75)
+
+fraction=(.1219512 .2439024 .3658537 .4878049 .6097561 .7317073 .8536585)
+depth=(10 20 30 40 50 60 70)
 
 SEED=$1
-PathToFolder=projects/def-msteiner/subsampling
+#PathToFolder=projects/def-msteiner/subsampling
+PathToFolder=scratch/subsets
+
 mkdir -p $PathToFolder/scripts
 mkdir -p $PathToFolder/files
 
