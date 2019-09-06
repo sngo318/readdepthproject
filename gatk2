@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+module load gatk/4.1.2.0
+module load picard/2.20.6
+
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex I=scratch/subsets/files/HuRef.82x.subsampled50x.bam
+
+gatk HaplotypeCaller \
+    -R projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta \
+    -I scratch/subsets/files/HuRef.82x.subsampled50x.bam \
+    -O scratch/HuRef50x.vcf \
