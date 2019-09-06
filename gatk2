@@ -3,11 +3,20 @@
 module load gatk/4.1.2.0
 module load picard/2.20.6
 
+files=(20 30 40 60 70)
+
+for file in ${files[@]}; do
+
 #index BAM file
-java -jar $EBROOTPICARD/picard.jar BuildBamIndex I=scratch/subsets/files/HuRef.82x.subsampled50x.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex I=scratch/subsets/files/HuRef.82x.subsampled${file}x.bam
 
 #use gatk HaplotypeCaller
 gatk HaplotypeCaller \
     -R projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta \
-    -I scratch/subsets/files/HuRef.82x.subsampled50x.bam \
-    -O scratch/HuRef50x.vcf \
+    -I scratch/subsets/files/HuRef.82x.subsampled${file}x.bam \
+    -O scratch/HuRef${file}x.vcf \
+    
+echo 'HuRef.82x.subsampled${file}x.bam'
+
+done
+
