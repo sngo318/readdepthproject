@@ -2,15 +2,13 @@
 
 module load gatk/4.1.2.0
 
-#gatk HaplotypeCaller \
-#    -R reference.fasta \
-#    -I sample1.bam \
-#    -O variants.g.vcf \
-#    -ERC GVCF
 # https://software.broadinstitute.org/gatk/documentation/article?id=11050
 
 gatk HaplotypeCaller \
-    -R reference.fasta \
-    -I sample1.bam \
-    -O variants.g.vcf \
-    -ERC GVCF
+    -R /projects/def-msteiner/readdepth/ref_genome/hg19.fa \
+    -I /scratch/subsets/files/HuRef.82x.subsampled10x.bam \
+    -O /scratch/HuRef10x.vcf \
+
+#gatk HaplotypeCaller -R /projects/def-msteiner/readdepth/ref_genome/hg19.fa -I /scratch/subsets/files/HuRef.82x.subsampled10x.bam -O /scratch/HuRef10x.vcf
+
+#Exception in thread "main" 
