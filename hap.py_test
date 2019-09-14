@@ -1,0 +1,1 @@
+hap.py-build/bin/hap.py vcf/HuRef10x.vcf.gz vcf/HuRef10x.vcf.gz -o vcf/test --force-interactive
