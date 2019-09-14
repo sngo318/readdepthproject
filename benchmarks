@@ -20,8 +20,7 @@ make
 
 #Instructions from compute canada
  # 1. create and activate a virtual environment:
- virtualenv --system-site-packages ~/.virtualenvs/hap.py
- source ~/.virtualenvs/hap.py/bin/activate
+ virtualenv --system-site-packages ~/.virtualenvs/depthenv
 source ~/.virtualenvs/depthenv/bin/activate
  # 2. download and unpack hap.py code
  wget https://github.com/Illumina/hap.py/archive/master.zip
@@ -36,7 +35,7 @@ source ~/.virtualenvs/depthenv/bin/activate
  export _JAVA_OPTIONS="-Xms256m -Xmx2g"
  # the following fixes an installer bug
  sed -i 's/lines = f.readlines()$/lines = f.readlines()\n        if not any(l.startswith("#!") for l in lines[:10]): return/' install.py
- python install.py ~/.virtualenvs/hap.py --with-rtgtools --no-tests
+ python install.py ~/.virtualenvs/depthenv --with-rtgtools --no-tests
 
  # 5. clean up
  cd ..
