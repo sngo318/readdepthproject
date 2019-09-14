@@ -1,0 +1,35 @@
+
+#Ramses van Zon
+#Compute Canada - Calcul Canada
+#SciNet: University of Toronto
+
+ # 1. create and activate a virtual environment:
+ virtualenv $HOME/hap.py
+ source $HOME/hap.py/bin/activate
+
+ # 2. download and unpack hap.py code
+ wget https://github.com/Illumina/hap.py/archive/master.zip
+ unzip master.zip
+
+ # 3. install required python packages
+ cd hap.py-master
+ pip install -r happy.requirements.txt
+
+ # 4. compile and install the code
+ module load gcc cmake java
+ export _JAVA_OPTIONS="-Xms256m -Xmx2g"
+ # the following fixes an installer bug
+ sed -i 's/lines = f.readlines()$/lines = f.readlines()\n        if not any(l.startswith("#!") for l in lines[:10]): return/' install.py
+ python install.py $HOME/hap.py --with-rtgtools --no-tests
+
+ # 5. clean up
+ cd ..
+ rm -rf hap.py-master master.zip
+
+#Any time you want to use hap.py after logging in or in job scripts, you would only need the line
+
+#source $HOME/hap.py/bin/activate
+
+#to activate the virtual environment, and perhaps also
+
+#export _JAVA_OPTIONS="-Xms256m -Xmx2g"
