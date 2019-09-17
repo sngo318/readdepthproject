@@ -21,6 +21,8 @@ make
 #Instructions from compute canada
  # 1. create and activate a virtual environment:
  virtualenv --system-site-packages ~/.virtualenvs/depthenv
+ virtualenv --system-site-packages ~/.virtualenvs/happy
+ source ~/.virtualenvs/happy/bin/activate
 source ~/.virtualenvs/depthenv/bin/activate
  # 2. download and unpack hap.py code
  wget https://github.com/Illumina/hap.py/archive/master.zip
@@ -48,3 +50,8 @@ Any time you want to use hap.py after logging in or in job scripts, you would on
 to activate the virtual environment, and perhaps also
 
  export _JAVA_OPTIONS="-Xms256m -Xmx2g"
+ 
+ hap.py home/eshjoshi/projects/def-msteiner/readdepth/vcf/HG001_GRCh37_NA12878.vcf  home/eshjoshi/projects/def-msteiner/readdepth/vcf/HuRef20x.vcf -r home/eshjoshi/projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta -o test
+hap.py NA12878 query_20 -o test -r HGREF
+
+/home/eshjoshi/projects/def-msteiner/readdepth/vcf
