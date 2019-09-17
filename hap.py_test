@@ -1,1 +1,12 @@
 hap.py-build/bin/hap.py vcf/HuRef10x.vcf.gz vcf/HuRef10x.vcf.gz -o vcf/test --force-interactive
+#test without variables
+hap.py projects/def-msteiner/readdepth/vcf/HG001_GRCh37_NA12878.vcf projects/def-msteiner/readdepth/vcf/HuRef10x.vcf -r projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta -o projects/def-msteiner/readdepth/hap.py-output/test
+
+
+$ ${HAPPY}/bin/hap.py  \
+      example/happy/PG_NA12878_chr21.vcf.gz \
+      example/happy/NA12878_chr21.vcf.gz \
+      -f example/happy/PG_Conf_chr21.bed.gz \
+      -o test
+$ ls test.*
+test.metrics.json  test.summary.csv
