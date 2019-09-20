@@ -9,7 +9,7 @@ files=(10)
 for file in ${files[@]}; do
 
 #use gatk HaplotypeCaller
-gatk HaplotypeCaller \
+gatk --java-options "-Xms60G" HaplotypeCaller \
     -R projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta \
     -I scratch/subsets/files/HuRef.82x.subsampled${file}x.bam \
     -O scratch/HuRef${file}x.vcf \
