@@ -46,3 +46,7 @@ gatk --java-options "-Xms8G" HaplotypeCaller \
 done
 
 echo HuRef.82x.subsampled$1x.bam
+
+#sbatch scratch/scripts/testgatk6.sh 20
+#Submitted batch job 19778971
+
