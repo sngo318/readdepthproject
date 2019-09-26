@@ -1,3 +1,5 @@
+#This is Esha's script for running parrallel 
+
 #!/usr/bin/env bash
 
 #SBATCH --nodes=1
@@ -12,7 +14,7 @@ for file in ${files[@]}; do
 #use gatk HaplotypeCaller
 gatk --java-options "-Xms4G" HaplotypeCaller \
     -R projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta \
-    -I scratch/subsets/files/HuRef.82x.subsampled${file}x.bam \
+    -I scratch/subsets/HuRef.82x.subsampled${file}x.bam \
     -O scratch/HuRef${file}x.vcf \
 echo 'HuRef.82x.subsampled${file}x.bam'
 
