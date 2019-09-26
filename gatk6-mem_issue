@@ -20,3 +20,29 @@ gatk --java-options "-Xms4G" HaplotypeCaller \
 done
 
 echo HuRef.82x.subsampled$1x.bam
+
+#Above script worked for 10x, did not work for 20x
+########
+
+#!/usr/bin/env bash
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=8000M
+#SBATCH --time=1-00:00
+
+module load gatk/4.1.2.0
+
+files=($1)
+
+for file in ${files[@]}; do
+
+#use gatk HaplotypeCaller
+gatk --java-options "-Xms8G" HaplotypeCaller \
+    -R projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta \
+    -I scratch/subsets/files/HuRef.82x.subsampled${file}x.bam \
+    -O scratch/HuRef${file}x.vcf \
+
+done
+
+echo HuRef.82x.subsampled$1x.bam
