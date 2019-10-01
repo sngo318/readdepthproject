@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=4000M
+#SBATCH --time=1-00:00
+
+memory=(4 8 12 16 20 20 20)
+depth=(10 20 30 40 50 60 70)
+
+PathToFolder=projects/def-msteiner/vcf
+
+for i in ${!depth[*]}
+do
+  echo -e '#!/bin/sh' > $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "#SBATCH --nodes=1" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "#SBATCH --ntasks-per-node=1" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "#SBATCH --mem=${memory[$i]}000M" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "#SBATCH --time=2-00:00" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "module load gatk/4.1.2.0" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e 'gatk --java-options "-Xms4G" HaplotypeCaller \' >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "-R projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta \" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "-I scratch/subsets/files/HuRef.82x.subsampled${depth}x.bam \" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "-O scratch/HuRef.${depth}x.vcf \" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  echo -e "echo 'HuRef.${depth}x.vcf'" >> $PathToFolder/scripts/gatk${depth[$i]}x.sh
+  sbatch $PathToFolder/scripts/gatk${depth[$i]}x.sh
+done
