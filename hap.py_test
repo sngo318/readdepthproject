@@ -1,15 +1,18 @@
+#########################################################
 ####Script for running hap.py on subsets of BAM files####
+#########################################################
 
-#Specify default reference file location before running hap.py
+# Specify default reference file location before running hap.py
 export HGREF=~./projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fa
 echo $HGREF
 
-#Run hap.py
-#First file is your truth file or benchmarking genome/reference dataset 
-#Second file is your query vcf file or in this case, the subset 
-#'-r' can be used to specify reference file if you're splitting by chromosome
-#Last line specifies the output file name 
-#####################
+# Run hap.py
+# First file is your truth file or benchmarking genome/reference dataset 
+# Second file is your query vcf file or in this case, the subset 
+# '-r' can be used to specify reference file if you're splitting by chromosome
+# Last line specifies the output file name 
+
+#########################################################
 
 #!/usr/bin/env bash
 
@@ -26,10 +29,15 @@ source $HOME/hap.py/bin/activate
 
 hap.py HG001_GRCh37_NA12878.vcf HuRef10x.vcf -r projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta -o test
 
-######To use hap.py chromosome wise######
-#split by chromsome
+#######################################
+#####To use hap.py chromosome wise#####
+#######################################
+
+# Split by chromsome
+
 module load bcftools/1.9
 
+#!/usr/bin/env bash
 bgzip -c HuRef10x.vcf > HuRef10x.vcf.gz
 tabix -p vcf HuRef10x.vcf.gz
 tabix HuRef10x.vcf.gz chr1 > HuRef10x.chr1.vcf
