@@ -1,6 +1,32 @@
-#!/usr/bin/env bash
+#########################################################
+####Script to subset BAM files using SAMTOOLS####
+#########################################################
 
-#for example: sbatch -t 1:00:00 scratch/subsets/script.sh 2
+#This script creates and executes a script for each subset
+
+#Run SAMTOOLS
+#Samtools will subset BAM files with -s INT.FRAC command
+#"The integer and fractional parts of the -s INT.FRAC option 
+#are used separately: the part after the decimal point sets 
+#the fraction of templates/pairs to be kept, while the integer 
+#part is used as a seed that influences which subset of reads 
+#is kept."
+#Ex: FRAC = 10/82 = .1219512 for the 10x subset
+#-o specifies the output file
+
+#example of how to run this script: sbatch scratch/subsets/script.sh 2
+
+
+#########################################################
+
+
+#!/usr/bin/env bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=4000M
+#SBATCH --time=1-00:00
+#SBATCH --job-name="subsampling HuRef82x"
+
 
 #fraction=(.06097561 .12195122 .18292683 .24390244 .30487805 .36585366 .42682927 .48780488 .54878049 .60975610 .67073171 .73170732 .79268293 .85365854 .91463415)
 #depth=(5 10 15 20 25 30 35 40 45 50 55 60 65 70 75)
