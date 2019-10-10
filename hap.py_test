@@ -32,7 +32,13 @@ hap.py hap.py/example/happy/*.vcf.gz \
 
 source $HOME/hap.py/bin/activate
 
-hap.py HG001_GRCh37_NA12878.vcf scratch/vcf/HuRef60x.testmem.vcf -r human_g1k_v37.fasta -o test.hap.py.60x
+$BENCH=/projects/def-msteiner/readdepth/vcf/HG001_GRCh37_NA12878.vcf
+$HGREF=.~/projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta
+
+hap.py $BENCH 
+       scratch/vcf/HuRef60x.testmem.vcf 
+       -r $HGREF 
+       -o test.hap.py.30x
 
 #######################################
 #####To use hap.py chromosome wise#####
