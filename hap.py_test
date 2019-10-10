@@ -28,16 +28,15 @@ hap.py hap.py/example/happy/*.vcf.gz \
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=1-00:00
 #SBATCH --mem=8000M
-#SBATCH --job-name="hap.py 60x test"
+#SBATCH --job-name="hap.py 30x test"
 
 source $HOME/hap.py/bin/activate
+cd /home/eshjoshi/
+$READDEPTH=/projects/def-msteiner/readdepth/
 
-$BENCH=/projects/def-msteiner/readdepth/vcf/HG001_GRCh37_NA12878.vcf
-$HGREF=.~/projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fasta
-
-hap.py $BENCH 
-       scratch/vcf/HuRef60x.testmem.vcf 
-       -r $HGREF 
+hap.py $READDEPTH/vcf/HG001_GRCh37_NA12878.vcf
+       $READDEPTH/vcf/HuRef30x.testmem.vcf 
+       -r $READDEPTH/ref_genome/human_g1k_v37.fasta
        -o test.hap.py.30x
 
 #######################################
