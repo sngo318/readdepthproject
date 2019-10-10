@@ -5,7 +5,7 @@
 #SBATCH --mem=8000M
 #SBATCH --job-name="hap.py 60x test"
 
-export HGREF=~./projects/def-msteiner/readdepth/ref_genome/human_g1k_v37.fa
+export HGREF=human_g1k_v37.fasta
 echo $HGREF
 
 source $HOME/hap.py/bin/activate
