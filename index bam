@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=4000M
+#SBATCH --time=1-00:00
+#SBATCH --mail-user=YOUR.email.ADDRESS
 
 module load gatk/4.1.2.0
 module load picard/2.20.6
@@ -11,7 +16,7 @@ for file in ${files[@]}; do
 java -jar $EBROOTPICARD/picard.jar BuildBamIndex I=scratch/subsets/files/HuRef.82x.subsampled${file}x.bam
 
     
-echo 'HuRef.82x.subsampled${file}x.bam indexed'
+echo "HuRef.82x.subsampled${file}x.bam indexed"
 
 done
 
