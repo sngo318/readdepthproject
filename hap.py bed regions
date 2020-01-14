@@ -14,10 +14,9 @@ subset=15
 
 source $HOME/hap.py/bin/activate
 
-hap.py HuRef.benchmark.SNP.vcf scratch/vcf/HuRef${subset}x.vcf \
-        -r human_g1k_v37.fasta \
-        -f refseq_union_cds.bed.gz \
-        -o hap.py${subset}x.refseq_union_cds_stratified
+hap.py HuRef.benchmark.SNP.vcf scratch/vcf/HuRef${subset}x.vcf -r human_g1k_v37.fasta -f refseq_union_cds.bed.gz -o hap.py${subset}x.refseq_union_cds_stratified
 
-echo "output"
-ls HuRef.hap.py.${subset}*
+#echo "output"
+#ls hap.py${subset}x.refseq_union_cds_stratified*
+
+
